@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/addons/uikit.min.css"/>
+    <link rel="stylesheet" href="/static/css/addons/uikit-rtl.min.css"/>
+    <link rel="stylesheet" href="/static/css/awesome.css">
+    <script src="/static/js/uikit.min.js"></script>
+    <script src="/static/js/uikit-icons.min.js"></script>
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/js/utils.js"></script>
+    <script>
+        $(function () {
+            $("#logout").click(
+                function (e) {
+                    delCookie('user');
+                    location.assign('/blogs');
+                }
+            )
+        })
+
+    </script>
+    {% block prehead %} {% endblock %}
+</head>
+<body>
+    <div class="uk-navbar-container uk-margin uk-position-fixed uk-position-top uk-position-z-index nav-height" uk-navbar>
+        <div class="uk-navbar-left uk-clearfix">
+            <a class="uk-navbar-item uk-logo" href="#">Knight</a>
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="/blogs">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: home"></span>
+                        日志
+                    </a>
+                </li>
+                <li>
+                     <a href="#">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: bookmark"></span>
+                        教程
+                    </a>
+                </li>
+                <li>
+                     <a href="#">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: code"></span>
+                        源码
+                    </a>
+                </li>
+                {% if user %}
+                <li>
+                    <a href="/edit"> <span class="uk-icon uk-margin-small-right" uk-icon="icon: plus"></span>
+                        新建日志
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav uk-margin-large-right">
+                {% if user %}
+                    <li>
+                        <a href="#0"><span class="uk-icon uk-margin-small-right" uk-icon="icon: user"></span>
+                            {{ user.name }}
+                        </a>
+                    </li>
+                    <li>
+                        <a id="logout">
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-out"></span>
+                            登出
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="/login">
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: sign-in"></span>
+                            登陆
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/registry">
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: file-edit"></span>
+                            注册
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="uk-container uk-container-center container-padding-top">
+        <div class="uk-grid">
+            <!-- content -->
+            {% block content %}
+            {% endblock %}
+            <!-- // content -->
+        </div>
+    </div>
+
+    <div class="uk-margin-large-top" style="background-color:#eee; border-top:1px solid #ccc;">
+        <div class="uk-container uk-container-center uk-text-center">
+            <div class="uk-panel uk-margin-top uk-margin-bottom">
+                <p>
+                    <a target="_blank" href="#" class="uk-icon-button" uk-icon="icon: google"></a>
+                    <a target="_blank" href="#" class="uk-icon-button" uk-icon="icon: github"></a>
+                    <a target="_blank" href="#" class="uk-icon-button" uk-icon="icon: facebook"></a>
+                    <a target="_blank" href="#" class="uk-icon-button" uk-icon="icon: twitter"></a>
+                </p>
+                <p>Powered by <a href="#">Awesome Python Webapp</a>. Copyright &copy; 2014. [<a href="/manage/" target="_blank">Manage</a>]</p>
+                <p><a href="http://www.liaoxuefeng.com/" target="_blank">www.liaoxuefeng.com</a>. All rights reserved.</p>
+                <a target="_blank" href="#"><i class="uk-icon-html5" style="font-size:64px; color: #444;"></i></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

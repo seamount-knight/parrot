@@ -1,0 +1,57 @@
+{% extends '__base__.html' %}
+{% block title %} 日志 {% endblock %}
+{% block content %}
+    <div class="uk-width-3-4">
+        <ul class="uk-list">
+            {% for blog in blogs %}
+                <li>
+                    <div class="uk-card uk-card-default uk-width-1-1 uk-card-hover">
+                        <div class="uk-card-header">
+                            <div class="uk-width-auto">
+                                <h3 class="uk-card-title uk-margin-remove-bottom">{{ blog.name }}</h3>
+                                <p class="uk-text-meta uk-margin-remove-top">{{ blog.created_at|datetime }}</p>
+                            </div>
+                        </div>
+                        <div class="uk-card-body">
+                            <p>{{ blog.summary }}</p>
+                        </div>
+                        <div class="uk-card-footer">
+                            <a href="#" class="uk-button uk-button-text">Read more</a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="uk-width-1-4">
+        <div class="uk-panel uk-panel-header">
+            <h3 class="uk-panel-title">友情链接</h3>
+            <ul class="uk-list uk-list-divider">
+                <li>
+                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: link"></span>
+                    <a target="_blank" href="#">
+                        编程
+                    </a>
+                </li>
+                <li>
+                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: link"></span>
+                    <a target="_blank" href="#">
+                        读书
+                    </a>
+                </li>
+                <li>
+                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: link"></span>
+                    <a target="_blank" href="#">
+                        Python教程
+                    </a>
+                </li>
+                <li>
+                    <span class="uk-icon uk-margin-small-right" uk-icon="icon: link"></span>
+                    <a target="_blank" href="#">
+                        Git教程
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

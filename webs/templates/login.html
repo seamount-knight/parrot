@@ -1,0 +1,47 @@
+{% extends '__base__.html' %}
+{% block prehead %}
+    <script>
+        $(function () {
+            $("#login").on("click",function (e) {
+                var data = {
+                email: $("form [name='email']").val(),
+                password: $("form [name='password']").val()
+                };
+                $.post("/login", data, function(result, code){
+                    location.assign("/blogs")
+                });
+            })
+        })
+    </script>
+{% endblock %}
+
+{% block title %}
+    登陆
+{% endblock %}
+
+{% block content %}
+    <div class="uk-width-2-3">
+        <h1>
+            登陆
+        </h1>
+        <form  class="uk-form-stacked">
+           <div class="uk-margin">
+                <label class="uk-form-label">邮箱</label>
+                <div class="uk-form-controls">
+                    <input name="email" class="uk-input" type="email" placeholder="输入邮件"
+                           pattern="^[a-z0-9\.\-\_]+\@[a-z0-9\-\_]+(\.[a-z0-9\-\_]+){1,4}$" required="required">
+                </div>
+            </div>
+            <div class="uk-margin">
+                <label class="uk-form-label">密码</label>
+                <div class="uk-form-controls">
+                    <input name="password" class="uk-input" type="password" placeholder="输入密码"
+                       pattern="^[a-zA-Z\d_]{8,}$" required="required">
+                </div>
+            </div>
+            <div class="uk-margin">
+                <div  class="uk-button uk-button-primary" id="login"><span uk-icon="icon: user"></span>登陆</div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
